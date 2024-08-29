@@ -7,7 +7,7 @@ export const Login = () => {
             Username
             <input type='text' />
             Password
-            <input type='text' />
+            <input type='password' />
         </form>
     </div>
   )
