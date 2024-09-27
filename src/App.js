@@ -1,6 +1,6 @@
 
 import './App.css';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Home from './Home';
 import Nav from './Nav';
 import About from './About';
@@ -14,15 +14,16 @@ import Login from './Login'
 function App() {
 
   const [userIsLoggedIn, setUserIsLoggedIn] = useState (false);
-
-  const handleLogin = () => {
-    setUserIsLoggedIn(true);
-    console.log("You have been logged in!")
-  }
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setUserIsLoggedIn(false);
     console.log("You have been logged out!");
+    navigate('/login');
+  }
+
+  const handleLoginClick = () => {
+    navigate('/login');
   }
 
   return (
@@ -31,8 +32,9 @@ function App() {
         <Link to = '/'>Home</Link>
         <Link to = '/nav'>Nav</Link>
         <Link to = '/about'>About</Link>
-        <button onClick={handleLogin}><Link to = '/login'>Login</Link></button>
-        <button onClick={handleLogout}>Logout</button>
+        {userIsLoggedIn? (
+          <button onClick={handleLogout}>Logout</button>) : (
+        <button onClick={handleLoginClick}>Login</button>)}
       </nav>
 
       <Routes>
@@ -43,7 +45,7 @@ function App() {
         <Route path='/nav' element = {<Nav />} />
         <Route path='/about' element = {<About />} />
         <Route path='/user/:id' element = { <UserProfile />} />
-        <Route path='/login' element = { <Login /> } />
+        <Route path='/login' element = { <Login setUserIsLoggedIn = {setUserIsLoggedIn}/> } />
       </Routes>
     </div>
   );
