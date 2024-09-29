@@ -1,11 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const Login = ({setUserIsLoggedIn}) => {
+
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
     console.log("You have been logged in!");
     setUserIsLoggedIn(true);
+    navigate('/');
   };
   
   return (

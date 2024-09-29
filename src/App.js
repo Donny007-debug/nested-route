@@ -1,14 +1,15 @@
 
 import './App.css';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
-import Home from './Home';
-import Nav from './Nav';
+import Home from './Components/Home';
+import Nav from './Components/Nav';
 import About from './About';
 import UserProfile from './UserProfile'
-import Profile from './Profile';
+import Profile from './Components/Profile';
 import Settings from './Settings';
 import { useState } from 'react';
-import Login from './Login'
+import Login from './Components/Login'
+import ProtectedRoute from './Components/ProtectedRoute';
 
 
 function App() {
@@ -38,14 +39,25 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/' element = {<Home userIsLoggedIn = {userIsLoggedIn} /> } >
-          <Route path='/profile' element = {<Profile />} />
-          <Route path='/settings' element = {<Settings />} />
-        </Route>
+        <Route path='/' element = {<Home userIsLoggedIn = {userIsLoggedIn} /> } />
         <Route path='/nav' element = {<Nav />} />
         <Route path='/about' element = {<About />} />
         <Route path='/user/:id' element = { <UserProfile />} />
         <Route path='/login' element = { <Login setUserIsLoggedIn = {setUserIsLoggedIn}/> } />
+        <Route 
+          path='/profile' 
+          element = {<ProtectedRoute userIsLoggedIn = {userIsLoggedIn}> 
+          <Profile /> 
+            </ProtectedRoute> } />
+          <Route 
+            path='/settings' 
+            element = {<ProtectedRoute userIsLoggedIn = {userIsLoggedIn}>
+               <Settings />
+               </ProtectedRoute> } />
+          <Route 
+          path='/settings' 
+          element = {<ProtectedRoute userIsLoggedIn = {userIsLoggedIn} />} />
+        <Route path='/settings' element = {<Settings />} />
       </Routes>
     </div>
   );

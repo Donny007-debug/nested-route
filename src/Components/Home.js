@@ -1,9 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import Loggedout from './Loggedout'
-function Home({userIsLoggedIn}) {
+function Home() {
     return(
-        userIsLoggedIn? (
         <div>
             <h2>Dashboard</h2>
                 <nav>
@@ -11,11 +9,6 @@ function Home({userIsLoggedIn}) {
                     <Link to = 'settings'>Settings</Link>
                 </nav>
                 <Outlet />
-        </div>
-     ) : (  <div>
-            <Loggedout />
-            </div>
-    ))
-
+        </div>)
 }
 export default Home;
