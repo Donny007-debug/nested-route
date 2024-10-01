@@ -1,0 +1,25 @@
+.dashboard {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard h2 {
+    color: #333;
+  }
+  
+  .dashboard nav {
+    margin-top: 20px;
+  }
+  
+  .dashboard nav a {
+    margin: 0 15px;
+    color: #61dafb;
+    font-weight: bold;
+  }
+  
+  .dashboard nav a:hover {
+    text-decoration: underline;
+  }
+  

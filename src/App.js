@@ -7,7 +7,7 @@ import About from './About';
 import UserProfile from './UserProfile'
 import Profile from './Components/Profile';
 import Settings from './Settings';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Login from './Components/Login'
 import ProtectedRoute from './Components/ProtectedRoute';
 
@@ -17,8 +17,15 @@ function App() {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState (false);
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    const storedLoginState = localStorage.getItem('userIsLoggedIn');
+    if(storedLoginState === 'true')
+      setUserIsLoggedIn(true);
+  }, [])
+  
   const handleLogout = () => {
     setUserIsLoggedIn(false);
+    localStorage.removeItem('userIsLoggedIn');
     console.log("You have been logged out!");
     navigate('/login');
   }
